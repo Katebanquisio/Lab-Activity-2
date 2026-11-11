@@ -1,4 +1,4 @@
-public class Truck extends Vehicle {
+public class Truck extends Vehicle implements Serviceable{
   private int numberofWheels;
 
   public Truck(String brand, String model, int year, int numbofWheels) {
