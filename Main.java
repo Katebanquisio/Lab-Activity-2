@@ -4,6 +4,10 @@ public class Main {
         vehicle.displayInfo();
     }
 
+    public static void performService(Serviceable item) {
+        item.Service();
+    }
+
     public static void main(String[] args) {
         // DEMO 1: A parent reference can refer to a child object.
         System.out.println("=== 1. Parent Reference ===");
@@ -13,6 +17,7 @@ public class Main {
         vehicle.moveBackward();
         vehicle.moveLeft();
         vehicle.moveRight();
+        performService((Serviceable) vehicle);
         System.out.println();
 
         // The Same Variable now Refer to a Motorcycle Object.
@@ -22,6 +27,7 @@ public class Main {
         vehicle.moveBackward();
         vehicle.moveLeft();
         vehicle.moveRight();
+        performService((Serviceable) vehicle);
 
         // DEMO 2: One Method accepts different Vehicle subclasses
         System.out.println("\n === 2. Method Parameter ===");
@@ -34,16 +40,19 @@ public class Main {
         car.moveBackward();
         car.moveLeft();
         car.moveRight();
+        performService((Serviceable) car);
         printDetails(motorcycle);
         motorcycle.moveForward();
         motorcycle.moveBackward();
         motorcycle.moveLeft();
         motorcycle.moveRight();
+        performService((Serviceable) motorcycle);
         printDetails(truck);
         truck.moveForward();
         truck.moveBackward();
         truck.moveLeft();
         truck.moveRight();
+        performService((Serviceable) truck);
 
         // DEMO 3: One array holds different Vehicle subclasses
         System.out.println("\n === 3. Polymorphic Array ===");
@@ -58,8 +67,21 @@ public class Main {
             currentVehicle.moveBackward();
             currentVehicle.moveLeft();
             currentVehicle.moveRight();
+            performService((Serviceable) currentVehicle);
             System.out.println();
         }
         System.out.println();
+
+        Serviceable[] serviceables = {
+                new Car("Toyota", "Vios", 2024, 4),
+                new Motorcycle("Honda", "Beat", 2023, "4-stroke, SOHC, single-cylinder"),
+                new Truck("Volvo", "FM", 2024, 10),
+                new Printer()
+        };
+
+        for (Serviceable currentServiceable : serviceables) {
+            performService(currentServiceable);
+            System.out.println();
+        }
     }
 }
